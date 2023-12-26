@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\TodoRequest;
+use App\Http\Requests\EditTodoRequest;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,21 +23,8 @@ class TodoController extends ApiController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
-
-        $validator = Validator::make($request->all(),[
-
-            'title'=>'required',
-            'user_id'=>'required'
-
-
-        ]);
-
-
-        if($validator->fails()){
-            return $this->errorResponse($validator->messages(),422);
-        }
 
         $todo = Todo::create([
             'title' => $request->title,
@@ -89,18 +78,8 @@ class TodoController extends ApiController
 
 
 
-    public function edittodo(Request $request, Todo $todo)
+    public function edittodo(EditTodoRequest $request, Todo $todo)
     {
-
-        $validator = Validator::make($request->all(),[
-            'title'=>'required'
-
-        ]);
-
-        if($validator->fails()){
-           return $this->errorResponse($validator->messages(),400);
-        }
-
 
         $task = auth()->user()->todos()->where('id', $todo->id);
 

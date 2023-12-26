@@ -4,24 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends ApiController
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string',
-            'c_password' => 'required|same:password',
-        ]);
 
-        if ($validator->fails()) {
-            return $this->errorResponse($validator->messages(), 422);
-        }
 
         $user = User::create([
             'name' => $request->name,
@@ -37,16 +30,13 @@ class AuthController extends ApiController
         ], 201);
     }
 
-    public function login(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string'
-        ]);
 
-        if ($validator->fails()) {
-            return $this->errorResponse($validator->messages(), 422);
-        }
+
+
+
+
+    public function login(LoginRequest $request)
+    {
 
         $user = User::where('email' , $request->email)->first();
 
@@ -64,6 +54,9 @@ class AuthController extends ApiController
             'token' => $token
         ], 200);
     }
+
+
+
 
     public function logout()
     {

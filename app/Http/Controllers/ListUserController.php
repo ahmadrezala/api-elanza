@@ -17,7 +17,7 @@ class ListUserController extends ApiController
 
        $user = auth()->user();
 
-    //    dd($user);
+ 
 
         $users = User::all();
 
