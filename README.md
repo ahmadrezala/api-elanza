@@ -1,3 +1,12 @@
+
+
+
+Todo program with authentication and the role of admin and author
+
+https://github.com/ahmadrezala/api-elanza/assets/141368982/da09a974-3aee-425f-977c-18f44e859630
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
